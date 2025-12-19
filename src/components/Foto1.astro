@@ -1,0 +1,119 @@
+<section class="relative w-full overflow-hidden bg-transparent">
+    
+    <div id="estrellas-container" class="absolute inset-0 pointer-events-none z-10">
+        <div class="estrella" style="top: 15%; left: 10%;"></div>
+        <div class="estrella" style="top: 25%; left: 85%;"></div>
+        <div class="estrella" style="top: 45%; left: 8%;"></div>
+        <div class="estrella" style="top: 60%; left: 90%;"></div>
+        <div class="estrella" style="top: 75%; left: 15%;"></div>
+        <div class="estrella" style="top: 35%; left: 92%;"></div>
+        <div class="estrella" style="top: 80%; left: 88%;"></div>
+        <div class="estrella" style="top: 20%; left: 50%;"></div>
+        <div class="estrella" style="top: 65%; left: 45%;"></div>
+        <div class="estrella" style="top: 10%; left: 75%;"></div>
+    </div>
+
+    <div id="contenedor-foto" class="w-full h-full relative z-0">
+        <img 
+            src="/imagenes/foto1.webp" 
+            alt="Fotografía" 
+            class="w-full h-full object-contain"
+        />
+    </div>
+
+</section>
+
+<style>
+    .estrella {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: white;
+        border-radius: 50%;
+        box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.8),
+                    0 0 12px 4px rgba(255, 215, 0, 0.6);
+        animation: brillar 2s ease-in-out infinite;
+    }
+
+    .estrella::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 12px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, white, transparent);
+    }
+
+    .estrella::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(90deg);
+        width: 12px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, white, transparent);
+    }
+
+    .estrella:nth-child(1) { animation-delay: 0s; }
+    .estrella:nth-child(2) { animation-delay: 0.3s; }
+    .estrella:nth-child(3) { animation-delay: 0.6s; }
+    .estrella:nth-child(4) { animation-delay: 0.9s; }
+    .estrella:nth-child(5) { animation-delay: 1.2s; }
+    .estrella:nth-child(6) { animation-delay: 1.5s; }
+    .estrella:nth-child(7) { animation-delay: 0.2s; }
+    .estrella:nth-child(8) { animation-delay: 0.8s; }
+    .estrella:nth-child(9) { animation-delay: 1.1s; }
+    .estrella:nth-child(10) { animation-delay: 0.5s; }
+
+    @keyframes brillar {
+        0%, 100% {
+            opacity: 0.3;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.3);
+        }
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Timeline que se dispara solo una vez al entrar en scroll
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#contenedor-foto",
+                start: "top 80%",
+                once: true // 🎯 Ejecuta la animación solo una vez
+            }
+        });
+
+        // Animación simple y elegante de la foto
+        tl.fromTo("#contenedor-foto", 
+            { opacity: 0, scale: 1.1 }, 
+            { opacity: 1, scale: 1, duration: 1.5, ease: "power2.out" },
+            0
+        );
+
+        // Animación de las estrellas apareciendo
+        tl.fromTo(".estrella", 
+            { opacity: 0, scale: 0 }, 
+            { 
+                opacity: 1, 
+                scale: 1, 
+                duration: 1, 
+                stagger: 0.15,
+                ease: "back.out(2)"
+            },
+            0.5 // Empieza un poco después de la foto
+        );
+    });
+</script>

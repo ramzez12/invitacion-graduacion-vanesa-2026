@@ -1,0 +1,155 @@
+---
+// Direccion.astro
+---
+<section class="py-8 px-4 relative">
+  <div class="max-w-xl mx-auto text-center relative">
+    
+    <div class="relative mb-4" id="icono-direccion">
+      
+      <div class="absolute left-0 top-1/2 -translate-y-1/2 w-10 pointer-events-none -ml-6 sm:-ml-7 md:-ml-8" id="flores-dir-izq">
+        <img
+          src="/imagenes/lateral.png"
+          alt="Flores decorativas izquierda"
+          class="w-full h-auto object-contain"
+        />
+      </div>
+
+      <div class="mb-4" id="titulo-ceremonia">
+        <h2 class="font-charm text-2xl md:text-3xl text-[#7A8980] font-bold tracking-wide">
+          Recepción Social
+        </h2>
+      </div>
+
+      <div class="flex justify-center mb-4">
+      <div class="relative inline-block">
+        <div class="relative p-[3px] bg-gradient-to-br from-[#D4AF37] via-[#F4D03F] to-[#D4AF37] rounded-full shadow-lg">
+          <div class="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden bg-white flex items-center justify-center">
+            <img
+              src="/imagenes/edi.webp"
+              alt="Icono de iglesia"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="absolute right-0 top-1/2 -translate-y-1/2 w-10 pointer-events-none -mr-6 sm:-mr-7 md:-mr-8" id="flores-dir-der">
+        <img
+          src="/imagenes/lateral.png"
+          alt="Flores decorativas derecha"
+          class="w-full h-auto object-contain scale-x-[-1]"
+        />
+      </div>
+    </div>
+    
+    <div class="mb-3" id="titulo-direccion">
+      <h2 class="font-charm text-2xl md:text-3xl text-[#D4AF37] font-bold tracking-wide">
+        Dirección
+      </h2>
+      <div class="w-16 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-2"></div>
+    </div>
+    
+    <div class="mb-4" id="info-direccion">
+      <h3 class="font-charm text-xl md:text-2xl text-[#7A8980] font-bold mb-2">
+        Salón de Eventos
+      </h3>
+      <h3 class="font-charm text-xl md:text-2xl text-[#7A8980] font-bold mb-2">
+        "GOLDEN ZANDERS"
+      </h3>
+      <p class="font-charm text-lg md:text-xl text-[#7A8980] leading-relaxed mb-3">
+        Avenida Versalles (esquina Calle Teduzara)
+      </p>
+      <p class="font-charm text-lg md:text-xl text-[#7A8980] leading-relaxed mb-3">
+        El Alto
+      </p>
+      
+      <div class="flex items-center justify-center gap-2">
+        <svg class="w-5 h-5 text-[#D4AF37]" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/>
+        </svg>
+        <p class="font-charm text-xl md:text-2xl text-[#D4AF37] font-bold">
+          17:00
+        </p>
+      </div>
+    </div>
+
+    <div class="flex justify-center" id="boton-ubicacion">
+      <a
+        href="https://maps.google.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-[#7A8980] text-white font-sans font-medium py-3 px-8 rounded transition-all duration-300 hover:bg-[#D4AF37] hover:shadow-lg tracking-wide text-sm uppercase"
+      >
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        Ver Ubicación
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (typeof window !== "undefined") {
+    document.addEventListener("DOMContentLoaded", () => {
+      // Estado inicial (Oculto)
+      gsap.set(["#icono-direccion", "#titulo-ceremonia", "#titulo-direccion", "#info-direccion", "#boton-ubicacion", "#flores-dir-izq", "#flores-dir-der"], { 
+        opacity: 0 
+      });
+      gsap.set("#titulo-ceremonia", { y: -20 });
+      gsap.set("#icono-direccion", { scale: 0.8 });
+      gsap.set("#flores-dir-izq", { x: -30 });
+      gsap.set("#flores-dir-der", { x: 30 });
+      gsap.set(["#titulo-direccion", "#info-direccion", "#boton-ubicacion"], { scale: 0.9 });
+
+      // ✨ ANIMACIÓN ÚNICA
+      ScrollTrigger.create({
+        trigger: "#icono-direccion",
+        start: "top 85%",
+        once: true, // 🎯 ESTO HACE QUE SOLO SE EJECUTE UNA VEZ
+        onEnter: () => {
+          const tl = gsap.timeline();
+          
+          tl.to("#titulo-ceremonia", {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+          })
+          .to("#icono-direccion", {
+            opacity: 1,
+            scale: 1,
+            duration: 1,
+            ease: "back.out(1.5)",
+          }, "-=0.4")
+          .to("#flores-dir-izq, #flores-dir-der", {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power2.out",
+          }, "-=0.8")
+          .to("#titulo-direccion, #info-direccion, #boton-ubicacion", {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: "back.out(1.2)",
+            stagger: 0.1,
+          }, "-=0.4");
+        }
+      });
+    });
+  }
+</script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Charm:wght@400;700&display=swap');
+  
+  .font-sans { font-family: 'Inter', sans-serif; }
+  .font-charm { font-family: 'Charm', cursive; }
+</style>

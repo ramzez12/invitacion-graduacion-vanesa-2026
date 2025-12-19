@@ -1,0 +1,106 @@
+<section class="relative w-full overflow-hidden bg-transparent justify-center">
+    
+    <!-- <div id="flores-arriba" class="absolute top-0 left-0 w-full z-20 pointer-events-none">
+        <img src="/imagenes/floresarriba.webp" alt="Decoración floral superior" class="w-full h-auto object-contain" />
+    </div> -->
+<div id="flores-arriba" class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1200px] z-20 pointer-events-none">
+    <img 
+        src="/imagenes/floresarriba.webp" 
+        alt="Decoración floral superior" 
+        class="w-full h-auto max-h-[150px] sm:max-h-[200px] md:max-h-[250px] object-contain object-top" 
+    />
+</div>
+    <div class="relative z-10 flex flex-col items-center justify-center w-full px-6 pt-32">
+        
+        <div id="gorrito" class="mb-4">
+            <img src="/imagenes/sombrero.png" alt="Gorro de graduación" class="w-32 md:w-48 h-auto object-contain" />
+        </div>
+
+        <div id="titulo-graduacion" class="text-center mb-4">
+            <h1 class="font-charm text-5xl md:text-7xl text-[#D4AF37] tracking-wide">
+                MI GRADUACIÓN
+            </h1>
+        </div>
+
+        <div id="linea-decorativa" class="flex items-center justify-center gap-4 my-6">
+            <div class="h-[2px] w-16 bg-[#7A8980]"></div>
+            <div class="w-3 h-3 rounded-full bg-[#7A8980]"></div>
+            <div class="h-[2px] w-16 bg-[#7A8980]"></div>
+        </div>
+
+        <div id="nombre-graduado" class="text-center mb-8">
+            <h2 class="font-['Great_Vibes'] text-4xl md:text-6xl text-[#1F1F1F]">
+                Vanesa Condori Mamani
+            </h2>
+        </div>
+
+        <div id="info-academica" class="text-center space-y-2 max-w-lg mb-12">
+            <p class="font-serif text-xl md:text-xl text-[#7A8980] uppercase tracking-widest">
+                Licenciatura en Comercio Internacional
+            </p>
+            <p class="font-serif text-lg md:text-lg text-[#7A8980]">
+                Universidad Tecnológica de Boliviana (UTB) 
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Great_Vibes&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap');
+    
+    section { 
+        background-color: transparent !important;
+        overflow-x: hidden; 
+    }
+    
+    .font-serif { 
+        font-family: 'Crimson Text', serif; 
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Configuramos el Timeline con ScrollTrigger
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#titulo-graduacion", // Se activa cuando el título entra en vista
+                start: "top 90%", // Empieza un poco antes de llegar
+                once: true // 🎯 ESTA ES LA CLAVE: Solo se ejecuta una vez
+            },
+            defaults: { ease: "power2.out" }
+        });
+        
+        // TODAS LAS ANIMACIONES AL MISMO TIEMPO (usando el 0 al final)
+        tl.fromTo("#flores-arriba", 
+            { opacity: 0, y: -80 }, 
+            { opacity: 1, y: 0, duration: 1.5 }, 
+            0)
+          .fromTo("#titulo-graduacion", 
+            { opacity: 0, scale: 0.8 }, 
+            { opacity: 1, scale: 1, duration: 1.2 }, 
+            0)
+          .fromTo("#linea-decorativa", 
+            { opacity: 0, scaleX: 0 }, 
+            { opacity: 1, scaleX: 1, duration: 1 }, 
+            0)
+          .fromTo("#nombre-graduado", 
+            { opacity: 0, y: 30 }, 
+            { opacity: 1, y: 0, duration: 1.2 }, 
+            0)
+          .fromTo("#info-academica", 
+            { opacity: 0, y: 20 }, 
+            { opacity: 1, y: 0, duration: 1 }, 
+            0)
+          .fromTo("#gorrito", 
+            { opacity: 0, y: 80, rotation: -15 }, 
+            { opacity: 1, y: 0, rotation: 0, duration: 1.5 }, 
+            0);
+    });
+</script>

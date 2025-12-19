@@ -1,0 +1,215 @@
+<section class="relative w-full overflow-hidden bg-white py-0 px-0">
+    
+    <div class="relative z-10 max-w-lg mx-auto">
+        
+        <!-- FECHA CON FONDO -->
+        <div class="bg-gradient-to-br from-[#5f6f68] via-[#6a7b74] to-[#5f6f68] px-8 py-4 pb-16 text-center relative overflow-hidden">
+            <!-- Patrón decorativo de fondo -->
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute top-0 left-0 w-full h-full" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 20px 20px;"></div>
+            </div>
+            
+            <div class="relative z-10">
+                 <!-- Año -->
+                    <!-- <div class="mt-2 flex justify-center" id="anio-evento">
+                        <p class="font-charmtext-3xl md:text-4xl text-white font-bold -translate-x-2">2026</p>
+                    </div> -->
+                <!-- Fecha con líneas arriba y abajo -->
+                <div class="relative max-w-md mx-auto" id="fecha-evento">
+                    <div class="flex items-center justify-center gap-4 md:gap-6">
+
+                      
+                        <!-- VIERNES con líneas arriba y abajo - ANCHO FIJO -->
+                        <div class="flex flex-col items-center w-24 md:w-28">
+                            <div class="w-full h-px bg-white/60 mb-2"></div>
+                            <span class="font-charm text-xl md:text-lg text-white uppercase tracking-wider font-bold text-center">
+                                VIERNES
+                            </span>
+                            <div class="w-full h-px bg-white/60 mt-2"></div>
+                        </div>
+
+                        <!-- Número 16 - CENTRADO -->
+                        <div class="flex items-center justify-center min-w-[80px] md:min-w-[100px]">
+                            <span class="font-charm text-7xl md:text-8xl text-white font-bold -ml-1">
+                                16
+                            </span>
+                        </div>
+
+                        <!-- ENERO con líneas arriba y abajo - ANCHO FIJO -->
+                        <div class="flex flex-col items-center w-24 md:w-28">
+                            <div class="w-full h-px bg-white/60 mb-2"></div>
+                            <span class="font-charm text-xl md:text-lg text-white uppercase tracking-wider font-bold text-center">
+                                ENERO
+                            </span>
+                            <div class="w-full h-px bg-white/60 mt-2"></div>
+                        </div>
+                    </div>
+
+                 
+
+                    <!-- Hora -->
+                    <div class="mt-4 flex justify-center" id="hora-evento">
+                        <p class="font-charm text-2xl md:text-4xl text-white font-bold -translate-x-2">HORA. 17:00</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detalle inferior -->
+            <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#2d3a35] to-transparent"></div>
+        </div>
+
+        <!-- FOTO CON MARCO BLANCO - SUPERPUESTA SOBRE LA FECHA (30% MÁS PEQUEÑA) -->
+        <div id="foto-central" class="px-6 -mt-10 relative z-20 flex justify-center">
+            <div class="w-[70%] p-3 shadow-xl border-4 border-white" style="box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+                <img 
+                    src="/imagenes/foto2.webp" 
+                    alt="Fotografía graduación" 
+                    class="w-full h-auto object-cover"
+                />
+            </div>
+        </div>
+
+        <!-- RESTO DEL CONTENIDO CON FONDO BLANCO -->
+        <div class="py-8 px-8 md:p-10">
+            
+            <!-- Mensaje principal -->
+            <div id="mensaje-principal" class="text-center mb-4">
+                <p class="font-charm text-[#7A8980] text-xl md:text-lg leading-relaxed">
+                    Un hombre sabio crea más oportunidades de las que encuentra
+                </p>
+                <p class="font-charm text-[#7A8980] text-base md:text-xl italic font-bold leading-relaxed">
+                    Francis Bacon
+                </p>
+            </div>
+
+
+            <!-- Línea divisoria decorativa -->
+            <div id="linea-divisoria" class="flex items-center justify-center gap-3 my-8">
+                <div class="h-px w-16 bg-gradient-to-r from-transparent to-[#7A8980]/40"></div>
+                <div class="w-2 h-2 rounded-full bg-[#7A8980]"></div>
+                <div class="h-px w-16 bg-gradient-to-l from-transparent to-[#7A8980]/40"></div>
+            </div>
+
+            <!-- Información de la ceremonia -->
+            <div id="info-ceremonia" class="space-y-4 text-center">
+                <p class="font-charm text-[#D4AF37] text-xl md:text-base uppercase tracking-wider">
+                    Con la bendición de Dios y mis padres
+                </p>
+            </div>
+
+            <!-- Nombres de los padres -->
+            <div id="nombres-padres" class="mt-6 space-y-2 text-center">
+                <p class="font-['Great_Vibes'] text-3xl md:text-3xl text-[#7A8980]">
+                    Tito Simeon Condori Mita
+                </p>
+                <p class="font-['Great_Vibes'] text-3xl md:text-3xl text-[#7A8980]">
+                    Henola Mamani Mamani
+                </p>
+            </div>
+
+            <!-- Padrinos -->
+            <!-- <div id="info-padrinos" class="mt-8 space-y-2 text-center">
+                <p class="font-arial text-[#5f6f68] text-sm md:text-base uppercase tracking-wider">
+                    Mis padrinos
+                </p>
+                <p class="font-['Great_Vibes'] text-xl md:text-2xl text-[#2d3a35]">
+                    Michael Peter Gómez
+                </p>
+                <p class="font-['Great_Vibes'] text-xl md:text-2xl text-[#2d3a35]">
+                    Patricia Andrea Chávez
+                </p>
+            </div> -->
+
+            <!-- Detalle decorativo inferior -->
+            <div id="deco-floral-inferior" class="mt-4 flex justify-center">
+                <svg width="80" height="40" viewBox="0 0 80 40" class="text-[#5f6f68]/30">
+                    <path d="M10,20 Q20,10 30,20 T50,20 T70,20" stroke="currentColor" stroke-width="1" fill="none"/>
+                    <circle cx="40" cy="20" r="3" fill="currentColor"/>
+                    <circle cx="20" cy="20" r="2" fill="currentColor"/>
+                    <circle cx="60" cy="20" r="2" fill="currentColor"/>
+                </svg>
+            </div>
+
+
+             <!-- Información de la ceremonia -->
+            <div id="info-ceremonia" class="space-y-4 text-center">
+                <p class="font-crimson  text-[#7A8980] text-xl md:text-base uppercase tracking-wider">
+                    TENEMOS EL HONOR DE INVITARTE A CELEBRAR
+                    
+                    <br/>
+                    <span class="font-semibold"> MI GRADUACIÓN</span>
+                </p>
+            
+            </div>
+
+
+
+        </div>
+    </div>
+
+</section>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Great_Vibes&display=swap');
+    
+    section { 
+        background-color: white !important;
+    }
+    
+    .font-arial { 
+        font-family: Arial, sans-serif; 
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+        tl.fromTo("#fecha-evento", 
+            { opacity: 0, y: -30 }, 
+            { opacity: 1, y: 0, duration: 1 }, 
+            0)
+          .fromTo("#anio-evento", 
+            { opacity: 0, y: -10 }, 
+            { opacity: 1, y: 0, duration: 0.8 }, 
+            0.2)
+          .fromTo("#hora-evento", 
+            { opacity: 0, y: -10 }, 
+            { opacity: 1, y: 0, duration: 0.8 }, 
+            0.3)
+          .fromTo("#foto-central", 
+            { opacity: 0, scale: 0.95 }, 
+            { opacity: 1, scale: 1, duration: 1 }, 
+            0.4)
+          .fromTo("#mensaje-principal", 
+            { opacity: 0, y: 20 }, 
+            { opacity: 1, y: 0, duration: 0.8 }, 
+            0.6)
+          .fromTo("#linea-divisoria", 
+            { opacity: 0, scaleX: 0 }, 
+            { opacity: 1, scaleX: 1, duration: 0.6 }, 
+            0.8)
+          .fromTo("#info-ceremonia", 
+            { opacity: 0, y: 15 }, 
+            { opacity: 1, y: 0, duration: 0.6 }, 
+            1)
+          .fromTo("#nombres-padres", 
+            { opacity: 0, y: 15 }, 
+            { opacity: 1, y: 0, duration: 0.6 }, 
+            1.2)
+          .fromTo("#info-padrinos", 
+            { opacity: 0, y: 15 }, 
+            { opacity: 1, y: 0, duration: 0.6 }, 
+            1.4)
+          .fromTo("#deco-floral-inferior", 
+            { opacity: 0, scale: 0.8 }, 
+            { opacity: 1, scale: 1, duration: 0.6 }, 
+            1.6)
+          .fromTo("#texto-final", 
+            { opacity: 0 }, 
+            { opacity: 1, duration: 0.6 }, 
+            1.8);
+    });
+</script>

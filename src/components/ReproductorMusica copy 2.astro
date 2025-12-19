@@ -1,0 +1,261 @@
+<!-- REPRODUCTOR DE MÚSICA CON TIMING INTELIGENTE -->
+<div
+  class="w-full max-w-[280px] mx-auto sm:mt-16 px-4"
+  id="music-player-container"
+>
+  <!-- Card blanco con trazo verde -->
+  <div
+    class="bg-white border-2 border-[#7A8980] rounded-2xl p-4 shadow-lg relative overflow-hidden"
+    id="player-card"
+  >
+    <!-- Contenido del reproductor -->
+    <div class="relative z-10">
+      <!-- Texto informativo -->
+      <p class="text-xs text-center text-[#7A8980] mb-3 font-medium">
+        Presiona para escuchar
+      </p>
+
+      <!-- Controles principales -->
+      <div
+        class="flex items-center justify-center space-x-4"
+        id="controls-container"
+      >
+        <!-- Botón anterior -->
+        <button
+          id="prevBtn"
+          class="text-[#7A8980] hover:text-[#7A8980]/70 transition-all duration-300 p-2 rounded-full border border-[#7A8980] transform hover:scale-110 focus:outline-none"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 6v12l-2-2V8l2-2zm2 6l8-5v10l-8-5z"></path>
+          </svg>
+        </button>
+
+        <!-- Botón principal play -->
+        <button
+          id="playPauseBtn"
+          class="relative text-[#7A8980] transition-all duration-300 transform hover:scale-110 focus:outline-none group w-12 h-12 flex items-center justify-center rounded-full border-2 border-[#7A8980]"
+        >
+          <!-- Icono play/pause -->
+          <div class="relative z-10 transform transition-all duration-300">
+            <svg
+              id="play-icon"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="drop-shadow-lg"
+            >
+              <path d="M8 5v14l11-7z"></path>
+            </svg>
+            <svg
+              id="pause-icon"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="hidden drop-shadow-lg"
+            >
+              <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"></path>
+            </svg>
+          </div>
+        </button>
+
+        <!-- Botón siguiente -->
+        <button
+          id="nextBtn"
+          class="text-[#7A8980] hover:text-[#7A8980]/70 transition-all duration-300 p-2 rounded-full border border-[#7A8980] transform hover:scale-110 focus:outline-none"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17 18V6l2 2v8l-2 2zm-2-6L7 7v10l8-5z"></path>
+          </svg>
+        </button>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<!-- Audio element -->
+<audio id="music-audio" preload="auto">
+  <source src="/audio/loscapos.mp3" type="audio/mpeg" />
+  Tu navegador no soporta audio HTML5.
+</audio>
+
+<!-- SCRIPTS CON TIMING INTELIGENTE -->
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  let isPlaying = false;
+  let currentTime = 0;
+  let duration = 0;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("🎵 Iniciando reproductor con timing inteligente...");
+
+    // Configurar estado inicial (invisible)
+    gsap.set("#music-player-container", {
+      opacity: 0,
+      y: 50,
+      scale: 0.9,
+    });
+
+    // Configurar estado inicial de elementos internos
+    gsap.set("#controls-container", { opacity: 0, scale: 0.8 });
+
+    // 🎯 SCROLLTRIGGER - Solo aparece una vez
+    ScrollTrigger.create({
+      trigger: "#music-player-container",
+      start: "top 100%",
+      once: true,
+
+      onEnter: () => {
+        console.log('🎵 ✨ Reproductor apareciendo...');
+        animatePlayerIn();
+      },
+    });
+
+    // 🌟 ANIMACIÓN DE ENTRADA ELEGANTE
+    function animatePlayerIn() {
+      const tl = gsap.timeline();
+
+      tl.to("#music-player-container", {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        ease: "power3.out",
+      })
+        .to(
+          "#controls-container",
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.6,
+            ease: "back.out(1.5)",
+          },
+          "-=0.3"
+        );
+    }
+
+    // EVENT LISTENERS
+    const playPauseBtn = document.getElementById("playPauseBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    if (playPauseBtn) {
+      playPauseBtn.addEventListener("click", togglePlayPause);
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", previousTrack);
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", nextTrack);
+    }
+
+    // OBTENER DURACIÓN REAL DEL AUDIO
+    const audioElement = document.getElementById("music-audio");
+    if (audioElement instanceof HTMLAudioElement) {
+      audioElement.addEventListener("loadedmetadata", () => {
+        duration = audioElement.duration;
+      });
+    }
+  });
+
+  // FUNCIÓN PLAY/PAUSE
+  function togglePlayPause() {
+    const audioElement = document.getElementById("music-audio");
+    const playIcon = document.getElementById("play-icon");
+    const pauseIcon = document.getElementById("pause-icon");
+    const playBtn = document.getElementById("playPauseBtn");
+
+    if (!(audioElement instanceof HTMLAudioElement)) {
+      console.log("No se encontró el elemento de audio");
+      return;
+    }
+
+    const audio = audioElement;
+
+    if (!isPlaying) {
+      audio.play().catch((error) => console.log("Error al reproducir:", error));
+
+      if (playIcon) playIcon.classList.add("hidden");
+      if (pauseIcon) pauseIcon.classList.remove("hidden");
+
+      gsap.to(playBtn, {
+        scale: 1.2,
+        duration: 0.2,
+        yoyo: true,
+        repeat: 1,
+        ease: "power2.out",
+      });
+
+      isPlaying = true;
+      startProgress();
+    } else {
+      audio.pause();
+
+      if (playIcon) playIcon.classList.remove("hidden");
+      if (pauseIcon) pauseIcon.classList.add("hidden");
+
+      isPlaying = false;
+    }
+  }
+
+  // FUNCIONES ADICIONALES
+  function previousTrack() {
+    console.log("Canción anterior");
+    gsap.to("#prevBtn", {
+      scale: 1.2,
+      duration: 0.1,
+      yoyo: true,
+      repeat: 1,
+    });
+  }
+
+  function nextTrack() {
+    console.log("Siguiente canción");
+    gsap.to("#nextBtn", {
+      scale: 1.2,
+      duration: 0.1,
+      yoyo: true,
+      repeat: 1,
+    });
+  }
+
+  function startProgress() {
+    const audioElement = document.getElementById("music-audio");
+
+    if (!(audioElement instanceof HTMLAudioElement)) return;
+
+    const interval = setInterval(() => {
+      if (!isPlaying) {
+        clearInterval(interval);
+        return;
+      }
+
+      currentTime = audioElement.currentTime;
+      duration = audioElement.duration || duration;
+
+      if (currentTime >= duration) {
+        isPlaying = false;
+        const playIcon = document.getElementById("play-icon");
+        const pauseIcon = document.getElementById("pause-icon");
+        if (playIcon) playIcon.classList.remove("hidden");
+        if (pauseIcon) pauseIcon.classList.add("hidden");
+        clearInterval(interval);
+      }
+    }, 100);
+  }
+</script>
+
+<style>
+  button:hover {
+    transform: translateY(-2px) scale(1.05);
+  }
+</style>

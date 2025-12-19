@@ -1,0 +1,126 @@
+---
+// RecepcionSocial.astro
+---
+<section class="py-6 px-4 relative">
+  <div class="max-w-xl mx-auto text-center relative">
+    
+    <div class="mb-2" id="titulo-recepcion">
+      <h2 class="font-charm text-2xl md:text-3xl text-[#a27735] font-bold tracking-wide">
+        RECEPCIÓN SOCIAL
+      </h2>
+    </div>
+
+    <div class="flex justify-center items-center gap-4 md:gap-6 mb-4" id="icono-recepcion">
+      
+      <!-- <div class="mariposa-flotante flex items-center" id="mariposa-recep-izq">
+        <img
+          src="/gif/MariposaRoja.gif"
+          alt="Mariposa"
+          class="w-20 h-20 object-contain"
+        />
+      </div> -->
+
+      <img
+        src="/imagenes/direccion.png"
+        alt="Icono de dirección"
+        class="w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain icono-dorado"
+      />
+
+      <!-- <div class="mariposa-flotante flex items-center" id="mariposa-recep-der">
+        <img
+          src="/gif/MariposaRoja.gif"
+          alt="Mariposa"
+          class="w-20 h-20 object-contain scale-x-[-1]"
+        />
+      </div> -->
+    </div>
+    
+    <div class="mb-2" id="subtitulo-recepcion">
+      <h2 class="font-charm text-2xl md:text-3xl text-[#a27735] font-bold tracking-wide">
+        Dirección
+      </h2>
+    </div>
+    
+    <div class="mb-2" id="info-recepcion">
+      <h3 class="font-charm text-xl md:text-2xl text-[#a27735] font-bold mb-2">
+        Salón de Eventos <br> "Belices VIP - Cristo Redentor"
+      </h3>
+      
+      <p class="font-charm text-xl md:text-xl text-[#991B1B] leading-relaxed mb-3">
+        Av. Oropeza, Nro 1999, <br />
+        Zona 3 de mayo - Ciudad de El Alto
+      </p>
+      
+      <p class="font-charm text-xl md:text-2xl text-[#a27735] font-bold">
+        Hora: 16:00
+      </p>
+    </div>
+    
+    <div class="flex justify-center" id="boton-recepcion-mapa">
+      <a href="https://maps.app.goo.gl/fkDYv7gxmPGCPgvw6" target="_blank" rel="noopener noreferrer">
+        <img
+          src="/imagenes/BotonUbicacion.webp"
+          alt="Ver ubicación en el mapa"
+          class="w-48 md:w-56 lg:w-64 h-auto object-contain cursor-pointer transition-transform duration-300 hover:scale-105"
+        />
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (typeof window !== "undefined") {
+    document.addEventListener("DOMContentLoaded", () => {
+      // Selectores únicos
+      const recepElements = "#icono-recepcion, #mariposa-recep-izq, #mariposa-recep-der, #titulo-recepcion, #subtitulo-recepcion, #info-recepcion, #boton-recepcion-mapa";
+
+      // Estado inicial
+      gsap.set("#icono-recepcion, #titulo-recepcion, #subtitulo-recepcion, #info-recepcion, #boton-recepcion-mapa", { opacity: 0, scale: 0.9 });
+      gsap.set("#mariposa-recep-izq", { opacity: 0, x: -30 });
+      gsap.set("#mariposa-recep-der", { opacity: 0, x: 30 });
+
+      ScrollTrigger.create({
+        trigger: "#icono-recepcion",
+        start: "top 85%",
+        onEnter: () => {
+          const tl = gsap.timeline();
+          
+          tl.to(recepElements, {
+            opacity: 1,
+            scale: 1,
+            x: 0,
+            duration: 1,
+            ease: "power2.out",
+            stagger: 0.1 // Aparecen ligeramente escalonados para más elegancia
+          });
+
+          // 🦋 FLOTADO CONTINUO
+          gsap.to("#mariposa-recep-izq", {
+            y: -15, x: 5, rotation: 5, duration: 3, ease: "sine.inOut", yoyo: true, repeat: -1
+          });
+
+          gsap.to("#mariposa-recep-der", {
+            y: -15, x: -5, rotation: -5, duration: 3.2, ease: "sine.inOut", yoyo: true, repeat: -1
+          });
+        }
+      });
+    });
+  }
+</script>
+
+<style>
+  .mariposa-flotante {
+    will-change: transform;
+  }
+  .font-charm { font-family: 'Charm', cursive; }
+
+    .icono-dorado {
+    filter: brightness(0) saturate(100%) invert(56%) sepia(12%) saturate(1486%) hue-rotate(359deg) brightness(92%) contrast(87%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+  }
+</style>

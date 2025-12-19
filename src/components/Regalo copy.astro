@@ -1,0 +1,93 @@
+---
+// QRInicio.astro
+---
+<section class="py-10 px-4 relative overflow-hidden">
+  <div class="max-w-xl mx-auto text-center relative">
+    
+    <div class="relative mb-6" id="contenedor-qr-inicio">
+      
+      <div class="absolute left-0 top-1/2 -translate-y-1/2 w-12 pointer-events-none -ml-4 sm:-ml-10 z-10" id="flores-inicio-izq">
+        <img
+          src="/imagenes/lateral.png"
+          alt="Decoración izquierda"
+          class="w-full h-auto object-contain"
+        />
+      </div>
+
+      <div class="mb-8" id="titulo-inicio-qr">
+        <h2 class="font-charm text-2xl md:text-3xl text-[#7A8980] font-bold tracking-wide">
+          UBICACIÓN DEL EVENTO
+        </h2>
+        <div class="w-20 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent mx-auto mt-2"></div>
+      </div>
+
+      <div class="flex justify-center">
+        <div class="relative inline-block group" id="marco-qr-inicio">
+          <div class="relative p-[5px] bg-gradient-to-br from-[#D4AF37] via-[#F4D03F] to-[#D4AF37] rounded-3xl shadow-2xl transition-transform duration-500 group-hover:scale-105">
+            
+            <div class="bg-white p-5 rounded-[1.3rem] shadow-inner">
+              <img
+                src="/imagenes/qr2.png" 
+                alt="QR Ubicación"
+                class="w-44 h-44 md:w-52 md:h-52 lg:w-60 lg:h-60 object-contain"
+              />
+            </div>
+          </div>
+          
+          <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-[#D4AF37] text-white text-[10px] uppercase font-bold tracking-widest py-1.5 px-5 rounded-full shadow-lg whitespace-nowrap">
+            Escanear para Navegar
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute right-0 top-1/2 -translate-y-1/2 w-12 pointer-events-none -mr-4 sm:-mr-10 z-10" id="flores-inicio-der">
+        <img
+          src="/imagenes/lateral.png"
+          alt="Decoración derecha"
+          class="w-full h-auto object-contain scale-x-[-1]"
+        />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (typeof window !== "undefined") {
+    document.addEventListener("DOMContentLoaded", () => {
+      // Timeline específico para la sección de inicio
+      const tlInicio = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#contenedor-qr-inicio",
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        }
+      });
+
+      tlInicio.from("#titulo-inicio-qr", { 
+          opacity: 0, 
+          y: -20, 
+          duration: 0.8 
+        })
+        .from("#marco-qr-inicio", { 
+          opacity: 0, 
+          scale: 0.4, 
+          rotate: 10, 
+          duration: 1.2, 
+          ease: "back.out(1.7)" 
+        }, "-=0.4")
+        .from("#flores-inicio-izq", { opacity: 0, x: -40, duration: 1 }, "-=0.8")
+        .from("#flores-inicio-der", { opacity: 0, x: 40, duration: 1 }, "-=1");
+    });
+  }
+</script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Charm:wght@400;700&display=swap');
+  .font-charm { font-family: 'Charm', cursive; }
+</style>

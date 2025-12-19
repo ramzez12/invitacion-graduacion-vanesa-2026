@@ -1,0 +1,239 @@
+<section class="py-16 px-4 relative bg-white">
+  <div class="max-w-3xl mx-auto text-center relative">
+
+    <!-- 🏛️ CARD CON CÓDIGO QR -->
+    <div class="relative" id="card-qr">
+      
+      <div class="relative bg-white rounded-lg shadow-[0_8px_30px_rgba(45,58,53,0.12)] p-10 md:p-14 border border-[#2d3a35]/10">
+        
+        <!-- 🌸 FLOR SUPERIOR IZQUIERDA -->
+        <div class="absolute -top-8 -left-8 z-10 w-20 h-20 md:w-24 md:h-24" id="flor-qr-top-izq">
+          <img
+            src="/imagenes/FlorLateral.webp"
+            alt="Flor decorativa"
+            class="w-full h-full object-contain opacity-80"
+          />
+        </div>
+
+        <!-- 🌸 FLOR SUPERIOR DERECHA -->
+        <div class="absolute -top-8 -right-8 z-10 w-20 h-20 md:w-24 md:h-24" id="flor-qr-top-der">
+          <img
+            src="/imagenes/FlorLateral.webp"
+            alt="Flor decorativa"
+            class="w-full h-full object-contain opacity-80 scale-x-[-1]"
+          />
+        </div>
+
+        <!-- TÍTULO -->
+        <div class="mb-8" id="titulo-qr">
+          <h2 class="font-serif text-3xl md:text-4xl text-[#2d3a35] font-light tracking-[0.3em] uppercase mb-3">
+            Ubicación
+          </h2>
+          <div class="w-24 h-[1px] bg-[#2d3a35] mx-auto"></div>
+        </div>
+
+        <!-- CÓDIGO QR CON MARCO -->
+        <div id="qr-code" class="relative mb-6">
+          <div class="relative inline-block">
+            <!-- Marco color #4a5953 -->
+            <div class="relative p-[3px] bg-[#4a5953] rounded">
+              <div class="bg-white p-6 rounded">
+                <!-- Aquí va tu imagen del QR -->
+                <img
+                  src="/imagenes/qr-ubicacion.png"
+                  alt="Código QR ubicación"
+                  class="w-48 h-48 md:w-56 md:h-56 mx-auto object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- INSTRUCCIÓN -->
+        <div class="space-y-3" id="info-qr">
+          <p class="font-sans text-lg md:text-xl text-[#2d3a35] font-medium">
+            Escanea el código QR
+          </p>
+          <p class="font-sans text-base md:text-lg text-[#5f6f68]">
+            para ver la ubicación en Google Maps
+          </p>
+        </div>
+
+        <!-- SEPARADOR -->
+        <div class="flex items-center justify-center gap-3 my-6" id="separador-qr">
+          <div class="h-[1px] w-12 bg-[#2d3a35]/30"></div>
+          <span class="text-[#2d3a35] text-sm">o</span>
+          <div class="h-[1px] w-12 bg-[#2d3a35]/30"></div>
+        </div>
+        
+        <!-- BOTÓN ALTERNATIVO -->
+        <div class="flex justify-center" id="boton-qr">
+          <a
+            href="https://maps.app.goo.gl/TEtL7GLcHV4TQQA87"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-[#2d3a35] text-white font-sans font-medium py-3 px-8 rounded transition-all duration-300 hover:bg-[#4a5953] hover:shadow-lg tracking-wide text-sm uppercase"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            Abrir en Maps
+          </a>
+        </div>
+
+        <!-- 🌸 FLOR INFERIOR IZQUIERDA -->
+        <div class="absolute -bottom-8 -left-8 z-10 w-20 h-20 md:w-24 md:h-24" id="flor-qr-bottom-izq">
+          <img
+            src="/imagenes/FlorLateral.webp"
+            alt="Flor decorativa"
+            class="w-full h-full object-contain opacity-80 rotate-180"
+          />
+        </div>
+
+        <!-- 🌸 FLOR INFERIOR DERECHA -->
+        <div class="absolute -bottom-8 -right-8 z-10 w-20 h-20 md:w-24 md:h-24" id="flor-qr-bottom-der">
+          <img
+            src="/imagenes/FlorLateral.webp"
+            alt="Flor decorativa"
+            class="w-full h-full object-contain opacity-80 rotate-180 scale-x-[-1]"
+          />
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+  
+  .font-serif {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .font-sans {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  
+  gsap.registerPlugin(ScrollTrigger);
+
+  if (typeof window !== "undefined") {
+    document.addEventListener("DOMContentLoaded", () => {
+      // Estado inicial
+      gsap.set("#card-qr", { opacity: 0, y: 30 });
+      gsap.set("#titulo-qr", { opacity: 0, y: -20 });
+      gsap.set("#qr-code", { opacity: 0, scale: 0.9 });
+      gsap.set("#info-qr", { opacity: 0, y: 20 });
+      gsap.set("#separador-qr", { opacity: 0, scaleX: 0 });
+      gsap.set("#boton-qr", { opacity: 0, y: 10 });
+      gsap.set("#flor-qr-top-izq, #flor-qr-top-der", { opacity: 0, scale: 0.5, rotation: -20 });
+      gsap.set("#flor-qr-bottom-izq, #flor-qr-bottom-der", { opacity: 0, scale: 0.5, rotation: 20 });
+
+      // ✨ ANIMACIÓN
+      ScrollTrigger.create({
+        trigger: "#card-qr",
+        start: "top 85%",
+        end: "top 20%",
+        onEnter: () => {
+          const tl = gsap.timeline();
+          
+          tl.to("#card-qr", {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power2.out",
+          })
+          .to("#flor-qr-top-izq, #flor-qr-top-der", {
+            opacity: 0.8,
+            scale: 1,
+            rotation: 0,
+            duration: 0.8,
+            ease: "back.out(1.5)",
+            stagger: 0.1,
+          }, "-=0.6")
+          .to("#titulo-qr", {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+          }, "-=0.6")
+          .to("#qr-code", {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: "back.out(1.2)",
+          }, "-=0.4")
+          .to("#info-qr", {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+          }, "-=0.3")
+          .to("#separador-qr", {
+            opacity: 1,
+            scaleX: 1,
+            duration: 0.5,
+            ease: "power2.out",
+          }, "-=0.2")
+          .to("#boton-qr", {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+          }, "-=0.2")
+          .to("#flor-qr-bottom-izq, #flor-qr-bottom-der", {
+            opacity: 0.8,
+            scale: 1,
+            rotation: 180,
+            duration: 0.8,
+            ease: "back.out(1.5)",
+            stagger: 0.1,
+          }, "-=0.4");
+
+          // 🌸 Animación continua de las flores
+          gsap.to("#flor-qr-top-izq, #flor-qr-bottom-der", {
+            y: -5,
+            rotation: "+=5",
+            duration: 3,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+          });
+
+          gsap.to("#flor-qr-top-der, #flor-qr-bottom-izq", {
+            y: 5,
+            rotation: "-=5",
+            duration: 3,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+            delay: 1.5,
+          });
+
+          // ✨ Pulso sutil en el QR
+          gsap.to("#qr-code", {
+            scale: 1.05,
+            duration: 2,
+            ease: "sine.inOut",
+            yoyo: true,
+            repeat: -1,
+          });
+        },
+        onLeaveBack: () => {
+          gsap.set("#card-qr", {
+            opacity: 0,
+          });
+        },
+      });
+
+      console.log("📱🌸 Card con QR inicializado");
+    });
+  }
+</script>
