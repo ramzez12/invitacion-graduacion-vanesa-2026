@@ -1,4 +1,5 @@
 ---
+// src/layouts/Layout.astro
 import '../styles/global.css';
 export interface Props {
   title: string;
@@ -6,19 +7,14 @@ export interface Props {
 const { title } = Astro.props;
 ---
 <!doctype html>
-<html lang="es" style="color-scheme: light; background-color: #ffffff;">
+<html lang="es" class="m-0 p-0">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light">
-    <meta name="theme-color" content="#ffffff">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    
-    <link rel="icon" type="image/svg+xml" href="/imagenes/graduacion.png" />
+     <link rel="icon" type="image/svg+xml" href="/imagenes/graduacion.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    
-    <!-- Google Fonts -->
+     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
@@ -28,33 +24,39 @@ const { title } = Astro.props;
     
     <style>
       * {
+        margin: 0;
+        padding: 0;
         box-sizing: border-box;
       }
       
-      html {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #ffffff !important;
-        color-scheme: light !important;
-      }
-      
-      body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        min-height: 100vh;
-        background-color: #ffffff !important;
-        background-image: url('/imagenes/texturafondo.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
+     html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* ← Elimina scroll horizontal */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden; /* ← Elimina scroll horizontal */
+    background-image: url('/imagenes/texturafondo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+}
+
+      main {
+        background: transparent !important;
       }
     </style>
   </head>
-  <body style="background-color: #ffffff;">
-    <slot />
+  <body class="min-h-screen m-0 p-0">
+    <main class="m-0 p-0 overflow-x-hidden">
+      <slot />
+    </main>
   </body>
 </html>
