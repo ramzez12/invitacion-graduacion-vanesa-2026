@@ -8,6 +8,36 @@
   }
 }
 
+/* Fuerza BRUTAL de modo claro */
+html {
+  color-scheme: light !important;
+  background-color: #ffffff !important;
+}
+
+body {
+  background-color: #ffffff !important;
+}
+
+/* Previene dark mode en TODOS los navegadores */
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: light !important;
+    background-color: #ffffff !important;
+  }
+  
+  body {
+    background-color: #ffffff !important;
+  }
+  
+  * {
+    color-scheme: light !important;
+  }
+}
+
+/* Fuerza colores en todos los elementos */
+h1, h2, h3, h4, h5, h6, p, span, div, section {
+  background-color: transparent;
+}
 /* Para el nombre */
 .font-great-vibes {
   font-family: 'Great Vibes', cursive !important;
