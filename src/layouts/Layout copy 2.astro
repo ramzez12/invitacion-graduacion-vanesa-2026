@@ -11,16 +11,10 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- ⭐ ESTAS LÍNEAS FUERZAN EL MODO CLARO -->
-    <meta name="color-scheme" content="light only">
-    <meta name="theme-color" content="#ffffff">
-    
-    <link rel="icon" type="image/svg+xml" href="/imagenes/graduacion.png" />
+     <link rel="icon" type="image/svg+xml" href="/imagenes/graduacion.png" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    
-    <!-- Google Fonts -->
+     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
@@ -35,45 +29,28 @@ const { title } = Astro.props;
         box-sizing: border-box;
       }
       
-      /* ⭐ FUERZA MODO CLARO EN TODO EL DOCUMENTO */
-      :root {
-        color-scheme: light only;
-        supported-color-schemes: light;
-      }
-      
-      html {
-        width: 100%;
-        height: 100%;
-        overflow-x: hidden;
-        color-scheme: light only; /* ⭐ Previene modo oscuro */
-      }
+     html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* ← Elimina scroll horizontal */
+}
 
-      body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        min-height: 100vh;
-        overflow-x: hidden;
-        background-color: #ffffff; /* ⭐ Fondo blanco explícito */
-        background-image: url('/imagenes/texturafondo.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        color: #000000; /* ⭐ Texto negro explícito */
-      }
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden; /* ← Elimina scroll horizontal */
+    background-image: url('/imagenes/texturafondo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+}
 
       main {
         background: transparent !important;
-      }
-      
-      /* ⭐ PREVIENE que el navegador cambie colores en modo oscuro */
-      @media (prefers-color-scheme: dark) {
-        html, body {
-          color-scheme: light only;
-          background-color: #ffffff !important;
-          color: #000000 !important;
-        }
       }
     </style>
   </head>
